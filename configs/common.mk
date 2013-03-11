@@ -1,29 +1,24 @@
-$(call inherit-product-if-exists, vendor/aokp/prebuilt/prebuilts.mk)
+SUPERUSER_EMBEDDED := true
 
 # Common overlay
 PRODUCT_PACKAGE_OVERLAYS += vendor/aokp/overlay/common
 
-# T-Mobile theme engine
-include vendor/aokp/configs/themes_common.mk
+# Common dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/aokp/overlay/dictionaries
 
 PRODUCT_PACKAGES += \
     AOKPtips \
     AppWidgetPicker \
-    LatinImeDictionary \
+    LatinImeDictionaryPack \
     Microbes \
-    MusicFX \
-    MusicVisualization \
-    NoiseField \
-    PhaseBeam \
+    PerformanceControl \
     ROMControl \
-    SuperSU \
+    Superuser \
+    su \
     SwagPapers \
-    Term \
-    CMFileManager
-
-# Use prebuilt su until fixed when built
-PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/xbin/su:system/xbin/su
+    Torch \
+    UnicornPorn \
+    Term
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
@@ -38,11 +33,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_COPY_FILES += \
     vendor/aokp/prebuilt/common/lib/libmicrobes_jni.so:system/lib/libmicrobes_jni.so \
-    vendor/aokp/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml \
     vendor/aokp/prebuilt/common/etc/resolv.conf:system/etc/resolv.conf
 
 # init.d
 PRODUCT_COPY_FILES += \
+    vendor/aokp/prebuilt/common/etc/init.local.rc:root/init.aokp.rc \
     vendor/aokp/prebuilt/common/etc/init.d/00start:system/etc/init.d/00start \
     vendor/aokp/prebuilt/common/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
     vendor/aokp/prebuilt/common/etc/sysctl.conf:system/etc/sysctl.conf \
@@ -75,3 +70,10 @@ PRODUCT_COPY_FILES += packages/wallpapers/LivePicker/android.software.live_wallp
 
 # Inherit common build.prop overrides
 -include vendor/aokp/configs/common_versions.mk
+
+# T-Mobile theme engine
+-include vendor/aokp/configs/themes_common.mk
+
+# common boot animation
+PRODUCT_COPY_FILES += \
+    vendor/aokp/prebuilt/bootanimation/bootanimation.zip:system/media/bootanimation.zip

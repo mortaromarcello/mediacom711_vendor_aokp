@@ -24,5 +24,3 @@ PRODUCT_RELEASE_NAME := 711
 
 PRODUCT_COPY_FILES += \
    vendor/aokp/prebuilt/bootanimation/bootanimation_1024_600.zip:system/media/bootanimation.zip
-PRODUCT_COPY_FILES += \
-	vendor/aokp/prebuilt/common/lib/armeabi/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so
